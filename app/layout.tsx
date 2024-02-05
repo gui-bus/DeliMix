@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/common/header";
-import Footer from "@/components/common/footer";
+
 import { ThemeProvider } from "@/providers/theme-provider";
+import { ClerkProvider } from "@clerk/nextjs";
+import { ptBR } from "@clerk/localizations";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -72,21 +73,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
-      <body className={`${montserrat.className}`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <div className="flex min-h-screen w-full flex-col">
-            <Header />
-            <div className="flex-grow p-5">{children}</div>
-            <Footer />
-          </div>
-        </ThemeProvider>
-      </body>
-    </html>
+    <ClerkProvider localization={ptBR}>
+      <html lang="pt-BR">
+        <body className={`${montserrat.className}`}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <div className="flex min-h-screen w-full flex-col">
+              <div className="flex-grow">{children}</div>
+            </div>
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
