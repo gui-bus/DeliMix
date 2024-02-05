@@ -9,50 +9,82 @@ import {
 } from "../ui/sheet";
 import { MenuIcon } from "lucide-react";
 import { Separator } from "../ui/separator";
-import { ImEnter, ImExit } from "react-icons/im";
+import { ImEnter } from "react-icons/im";
 import { HiMiniShoppingCart } from "react-icons/hi2";
 import { useState } from "react";
 import { Button } from "../ui/button";
 import ThemeSwitcher from "./theme-switcher";
-import NavLinks from "./nav-links";
 import { navlinks } from "@/helpers/contants";
 import Link from "next/link";
+import { UserButton, useClerk } from "@clerk/nextjs";
+import { useUser } from "@clerk/nextjs";
 
 const MobileMenu = () => {
   const [sheetIsOpen, setSheetIsOpen] = useState(false);
+  const { isSignedIn, user } = useUser();
+  const { signOut } = useClerk();
 
   const sheetButtonClick = () => {
     setSheetIsOpen(false);
   };
 
-  const handleLoginClick = () => {
-    console.log("TODO: ADD LOGIN");
-  };
-
   const handleLogoutClick = () => {
-    console.log("TODO: ADD LOGOUT");
+    signOut();
+    setSheetIsOpen(false);
   };
 
   return (
     <div className="flex items-center gap-3">
-      <ThemeSwitcher />
+      <div className="flex items-center gap-5">
+        <div className="flex items-center gap-2">
+          <UserButton />
+          <div className="hidden md:block">
+            <ThemeSwitcher size={"icon"} variant={"link"} />
+          </div>
+        </div>
 
-      <Sheet>
-        <SheetTrigger asChild>
-          <Button variant={"ghost"} size={"icon"}>
-            <HiMiniShoppingCart size={25} />
-          </Button>
-        </SheetTrigger>
-        <SheetContent>
-          <SheetHeader>
-            <SheetTitle>Carrinho</SheetTitle>
-            <SheetDescription className="flex flex-col items-center justify-center">
-              <Separator className="my-2" />
-              <p>TODO: ADD CART</p>
-            </SheetDescription>
-          </SheetHeader>
-        </SheetContent>
-      </Sheet>
+        <div className="flex items-center gap-5">
+          <div className="flex items-center gap-2">
+            {isSignedIn && (
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button
+                    variant={"default"}
+                    className="flex w-full items-center justify-center gap-2 rounded-3xl"
+                  >
+                    Carrinho <HiMiniShoppingCart size={25} />
+                  </Button>
+                </SheetTrigger>
+                <SheetContent>
+                  <SheetHeader>
+                    <SheetTitle>Carrinho</SheetTitle>
+                    <SheetDescription className="flex flex-col items-center justify-center">
+                      <Separator className="my-2" />
+                      <p>TODO: ADD CART</p>
+                    </SheetDescription>
+                  </SheetHeader>
+                </SheetContent>
+              </Sheet>
+            )}
+          </div>
+
+          {!isSignedIn && (
+            <Button
+              variant={"default"}
+              size={"lg"}
+              className="hidden rounded-3xl md:flex"
+              asChild
+            >
+              <Link
+                href="/sign-in"
+                className="flex w-full items-center justify-center gap-2"
+              >
+                Login <ImEnter size={20} />
+              </Link>
+            </Button>
+          )}
+        </div>
+      </div>
 
       <div className="md:hidden">
         <Sheet open={sheetIsOpen} onOpenChange={setSheetIsOpen}>
@@ -67,41 +99,64 @@ const MobileMenu = () => {
               <SheetDescription className="flex flex-col items-center justify-center">
                 <Separator className="my-2" />
 
-                <Button
-                  onClick={handleLoginClick}
-                  variant={"default"}
-                  className="mt-4 flex w-full items-center justify-center gap-2 dark:text-white"
-                >
-                  Login <ImEnter size={20} />
-                </Button>
+                {!isSignedIn ? (
+                  <>
+                    <div className="flex w-full items-center gap-2">
+                      <Button
+                        variant={"default"}
+                        size={"lg"}
+                        className="rounded-3xl"
+                        asChild
+                      >
+                        <Link
+                          href="/sign-in"
+                          className="flex w-full items-center justify-center gap-2"
+                        >
+                          Login <ImEnter size={20} />
+                        </Link>
+                      </Button>
 
-                <Separator className="my-5" />
+                      <ThemeSwitcher size={"icon"} variant={"link"} />
+                    </div>
+
+                    <Separator className="my-5" />
+                  </>
+                ) : (
+                  <>
+                    <div className="flex w-full items-center gap-2">
+                      <Button
+                        variant={"default"}
+                        size={"lg"}
+                        className="flex w-full items-center justify-center gap-2 rounded-3xl"
+                        onClick={handleLogoutClick}
+                      >
+                        Logout <ImEnter size={20} />
+                      </Button>
+
+                      <ThemeSwitcher size={"icon"} variant={"link"} />
+                    </div>
+
+                    <Separator className="my-5" />
+                  </>
+                )}
 
                 <div className="flex w-full flex-col gap-2">
                   {navlinks.map((navlink) => (
                     <Button
                       key={navlink.text}
-                      variant={"ghost"}
+                      variant={"outline"}
                       className="rounded-full"
                       asChild
                       onClick={sheetButtonClick}
                     >
                       <Link
                         href={navlink.href}
-                        className="flex w-full items-center justify-center gap-2"
+                        className="flex w-full items-center justify-center gap-2 dark:text-white/70"
                       >
                         {navlink.text}
                       </Link>
                     </Button>
                   ))}
-
-                  <Button
-                    onClick={handleLogoutClick}
-                    variant={"outline"}
-                    className="flex items-center justify-center gap-2 dark:text-white"
-                  >
-                    Logout <ImExit size={20} />
-                  </Button>
                 </div>
               </SheetDescription>
             </SheetHeader>

@@ -4,14 +4,11 @@ import { Card, CardContent } from "../ui/card";
 import Link from "next/link";
 import NavLinks from "./nav-links";
 import MobileMenu from "./mobile-menu";
-import { useState } from "react";
 
 const Header = () => {
-  const [sheetIsOpen, setSheetIsOpen] = useState(false);
-
   return (
     <header>
-      <Card className="rounded-b-none border-b border-neutral-900 dark:border-b-primary">
+      <Card className="rounded-none border-b border-neutral-900 dark:border-b-primary drop-shadow-xl">
         <CardContent className="mx-auto flex w-full max-w-7xl items-center justify-around p-3">
           <Link href="/">
             <Image
