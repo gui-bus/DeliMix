@@ -65,17 +65,17 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="mx-auto w-full cursor-default items-center justify-center border-t border-neutral-900 bg-white shadow-xl dark:border-primary dark:bg-[#181717] md:px-0 pt-2">
-      <section className="flex flex-col items-center justify-around gap-y-4 px-4 shadow-xl md:flex-row md:gap-y-0 pb-2">
+    <footer className="mx-auto w-full cursor-default items-center justify-center border-t border-neutral-900 bg-white shadow-xl dark:border-primary dark:bg-[#181717] md:px-0 pt-5">
+      <section className="flex flex-col items-center justify-around gap-y-4 shadow-xl md:flex-row md:gap-y-0 pb-5 w-full max-w-7xl mx-auto px-5">
         <Link href="/">
           <Image
-            src="/Logo.png"
-            alt="Quick Barber"
+            src="/textLogo.svg"
+            alt="DeliMix"
             height={0}
             width={0}
             sizes="100vw"
             priority
-            className="h-auto w-36 lg:w-24 object-contain"
+            className="h-auto w-36 lg:w-24 object-contain dark:invert"
           />
         </Link>
 
