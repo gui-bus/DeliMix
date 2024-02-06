@@ -1,15 +1,27 @@
-"use client";
 import AboutSection from "@/sections/about-section";
-import { useUser } from "@clerk/nextjs";
+import WelcomeSection from "@/sections/welcome-section";
+import Image from "next/image";
 
 export default function Home() {
-  const { user } = useUser();
   return (
-    <div>
+    <section>
+      <Image
+        src="/banner.png"
+        alt="DeliMix Banner"
+        width={0}
+        height={0}
+        className="h-auto w-full object-cover"
+        sizes="100vw"
+        priority
+        draggable="false"
+      />
+      <div className="md:hidden">
+        <WelcomeSection />
+      </div>
       <AboutSection />
-      <h1>
-        Olá, {user?.firstName} {user?.lastName}
-      </h1>
-    </div>
+      <div className="hidden md:block">
+        <WelcomeSection />
+      </div>
+    </section>
   );
 }

@@ -66,7 +66,7 @@ export default function Footer() {
 
   return (
     <footer className="mx-auto w-full cursor-default items-center justify-center border-t border-neutral-900 bg-white shadow-xl dark:border-primary dark:bg-[#181717] md:px-0 pt-5">
-      <section className="flex flex-col items-center justify-around gap-y-4 shadow-xl md:flex-row md:gap-y-0 pb-5 w-full max-w-7xl mx-auto px-5">
+      <section className="flex flex-col items-center justify-around gap-y-4 shadow-xl md:flex-row md:gap-y-0 pb-5">
         <Link href="/">
           <Image
             src="/textLogo.svg"
