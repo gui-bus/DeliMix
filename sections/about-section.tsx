@@ -38,7 +38,7 @@ const AboutSection = () => {
   return (
     <section className="flex flex-col items-center justify-center gap-5">
       <div className="flex flex-col items-center justify-center gap-2 p-5">
-        <h1 className="text-center text-xl font-bold uppercase italic md:text-3xl">
+        <h1 className="text-center text-xl font-black uppercase italic md:text-3xl">
           Explore uma explosão de sabores em cada mordida
         </h1>
         <p className="text-sm font-light dark:text-white/70 md:text-base">
