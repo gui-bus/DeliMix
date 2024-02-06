@@ -31,7 +31,7 @@ const Search = () => {
   });
 
   const handleSubmit = (data: z.infer<typeof searchSchema>) => {
-    router.push(`/pizzas?search=${data.search}`);
+    router.push(`/products?search=${data.search}`);
   };
   return (
     <div className="flex items-center gap-2">
