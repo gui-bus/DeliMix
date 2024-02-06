@@ -2,28 +2,28 @@
 import Image from "next/image";
 import { Card, CardContent } from "../ui/card";
 import Link from "next/link";
-import NavLinks from "./nav-links";
 import MobileMenu from "./mobile-menu";
+import Search from "./search";
 
 const Header = () => {
   return (
     <header>
-      <Card className="rounded-none border-b border-neutral-900 dark:border-b-primary drop-shadow-xl">
-        <CardContent className="mx-auto flex w-full max-w-7xl items-center justify-around p-3">
+      <Card className="rounded-none border-none drop-shadow-xl">
+        <CardContent className="mx-auto flex w-full max-w-5xl items-center justify-around p-3">
           <Link href="/">
             <Image
-              src="/Logo.png"
+              src="/textLogo.svg"
               alt="DeliMix"
               height={0}
               width={0}
               sizes="100vw"
               priority
-              className="h-auto w-20 object-contain"
+              className="h-auto w-24 object-contain dark:invert"
             />
           </Link>
 
-          <div className="hidden md:block">
-            <NavLinks />
+          <div className="mx-auto hidden w-full max-w-xl md:block">
+            <Search />
           </div>
 
           <MobileMenu />
