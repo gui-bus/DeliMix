@@ -1,4 +1,5 @@
 import AboutSection from "@/sections/about-section";
+import ProductsSection from "@/sections/products-section";
 import WelcomeSection from "@/sections/welcome-section";
 import Image from "next/image";
 
@@ -15,12 +16,16 @@ export default function Home() {
         priority
         draggable="false"
       />
-      <div className="md:hidden">
-        <WelcomeSection />
-      </div>
-      <AboutSection />
-      <div className="hidden md:block">
-        <WelcomeSection />
+      <div className="mx-auto flex w-full max-w-6xl flex-col">
+        <div className="md:hidden">
+          <WelcomeSection />
+        </div>
+        <AboutSection />
+        <div className="hidden md:block">
+          <WelcomeSection />
+        </div>
+
+        <ProductsSection />
       </div>
     </section>
   );
