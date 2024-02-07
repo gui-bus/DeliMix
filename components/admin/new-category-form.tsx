@@ -18,6 +18,7 @@ import { useRouter } from "next/navigation";
 import { createCategory } from "@/actions/new-category";
 import { MdOutlineAddTask } from "react-icons/md";
 import toast from "react-hot-toast";
+import Link from "next/link";
 
 const newCategorySchema = z.object({
   name: z
@@ -40,7 +41,7 @@ const newCategorySchema = z.object({
     .min(1, "Campo obrigatório!"),
 });
 
-const NewProductForm = () => {
+const NewCategoryForm = () => {
   const form = useForm<z.infer<typeof newCategorySchema>>({
     resolver: zodResolver(newCategorySchema),
   });
@@ -127,9 +128,18 @@ const NewProductForm = () => {
               </FormItem>
             )}
           />
-          <Button variant={"default"} type="submit" className="rounded-full">
+          <Button
+            variant={"default"}
+            type="submit"
+            className="w-full rounded-xl"
+          >
             Cadastrar nova categoria
             <MdOutlineAddTask size={25} className="ml-2 text-white" />
+          </Button>
+          <Button variant={"link"} className="rounded-full text-black" asChild>
+            <Link href="/admin/new/product">
+              Quer cadastrar um novo produto? Clique aqui!
+            </Link>
           </Button>
         </form>
       </Form>
@@ -137,4 +147,4 @@ const NewProductForm = () => {
   );
 };
 
-export default NewProductForm;
+export default NewCategoryForm;

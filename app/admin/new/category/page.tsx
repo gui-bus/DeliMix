@@ -1,5 +1,5 @@
 "use client";
-import NewProductForm from "@/components/admin/new-category-form";
+import NewCategoryForm from "@/components/admin/new-category-form";
 import { Button } from "@/components/ui/button";
 import { ChevronLeftIcon } from "lucide-react";
 import Image from "next/image";
@@ -23,8 +23,8 @@ const Search = () => {
           />
         </div>
         <div className="w-full p-5 lg:w-1/2">
-          <Button size={"icon"} onClick={() => router.back()}>
-            <ChevronLeftIcon size={20} />
+          <Button size={"sm"} variant={"outline"} onClick={() => router.back()} className="mb-5 w-fit">
+            <ChevronLeftIcon size={20} className="mr-2"/> Voltar
           </Button>
           <div className="mx-auto mb-5 flex w-full flex-col justify-center space-y-2">
             <h1 className="flex justify-center text-2xl font-bold">
@@ -34,7 +34,7 @@ const Search = () => {
               Cadastre novas categorias para personalizar seu cardápio.
             </p>
           </div>
-          <NewProductForm />
+          <NewCategoryForm />
         </div>
       </div>
     </section>
