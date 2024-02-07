@@ -5,6 +5,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ptBR } from "@clerk/localizations";
+import { Toaster } from "react-hot-toast";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -75,13 +76,16 @@ export default function RootLayout({
   return (
     <ClerkProvider localization={ptBR}>
       <html lang="pt-BR">
-        <body className={`${montserrat.className} bg-[#F5F5F0] dark:bg-background`}>
+        <body
+          className={`${montserrat.className} bg-[#F5F5F0] dark:bg-background`}
+        >
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange
           >
+            <Toaster position="top-center" reverseOrder={false} />
             <div className="flex min-h-screen w-full flex-col">
               <div className="flex-grow">{children}</div>
             </div>
