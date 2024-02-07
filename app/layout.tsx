@@ -75,10 +75,10 @@ export default function RootLayout({
   return (
     <ClerkProvider localization={ptBR}>
       <html lang="pt-BR">
-        <body className={`${montserrat.className}`}>
+        <body className={`${montserrat.className} bg-[#F5F5F0] dark:bg-background`}>
           <ThemeProvider
             attribute="class"
-            defaultTheme="light"
+            defaultTheme="system"
             enableSystem
             disableTransitionOnChange
           >
