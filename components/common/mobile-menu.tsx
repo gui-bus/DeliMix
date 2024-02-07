@@ -43,31 +43,7 @@ const MobileMenu = () => {
           </div>
         </div>
 
-        <div className="flex items-center gap-5">
-          <div className="flex items-center gap-2">
-            {isSignedIn && (
-              <Sheet>
-                <SheetTrigger asChild>
-                  <Button
-                    variant={"default"}
-                    className="flex w-full items-center justify-center gap-2 rounded-3xl"
-                  >
-                    Carrinho <HiMiniShoppingCart size={25} />
-                  </Button>
-                </SheetTrigger>
-                <SheetContent>
-                  <SheetHeader>
-                    <SheetTitle>Carrinho</SheetTitle>
-                    <SheetDescription className="flex flex-col items-center justify-center">
-                      <Separator className="my-2" />
-                      <p>TODO: ADD CART</p>
-                    </SheetDescription>
-                  </SheetHeader>
-                </SheetContent>
-              </Sheet>
-            )}
-          </div>
-
+        
           {!isSignedIn && (
             <Button
               variant={"default"}
@@ -83,7 +59,7 @@ const MobileMenu = () => {
               </Link>
             </Button>
           )}
-        </div>
+        
       </div>
 
       <div className="md:hidden">
