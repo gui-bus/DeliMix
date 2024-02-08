@@ -7,20 +7,21 @@ interface createCategoryProps {
   data: {
     imageUrl: string;
     name: string;
-    slug: string;
   };
 }
 
 export const createCategory = async ({ data }: createCategoryProps) => {
-  if (!data.imageUrl || !data.name || !data.slug) {
+  if (!data.imageUrl || !data.name) {
     return null;
   }
+
+  var slugify = require('slugify')
   
   await prismaClient.category.create({
     data: {
       imageUrl: data.imageUrl,
       name: data.name,
-      slug: data.slug,
+      slug: slugify(data.name),
       id: uuidv4(),
     },
   });

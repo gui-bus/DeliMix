@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { SearchIcon } from "lucide-react";
+import { Label } from "@/components/ui/label";
 import {
   Form,
   FormControl,
@@ -14,7 +14,6 @@ import {
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
 import { createCategory } from "@/actions/new-category";
 import { MdOutlineAddTask } from "react-icons/md";
 import toast from "react-hot-toast";
@@ -22,12 +21,6 @@ import Link from "next/link";
 
 const newCategorySchema = z.object({
   name: z
-    .string({
-      required_error: "Campo obrigatório!",
-    })
-    .trim()
-    .min(1, "Campo obrigatório!"),
-  slug: z
     .string({
       required_error: "Campo obrigatório!",
     })
@@ -51,7 +44,6 @@ const NewCategoryForm = () => {
       await createCategory({ data });
 
       form.setValue("name", "");
-      form.setValue("slug", "");
       form.setValue("imageUrl", "");
 
       toast.success("Categoria criada com sucesso!", {
@@ -95,24 +87,6 @@ const NewCategoryForm = () => {
 
           <FormField
             control={form.control}
-            name="slug"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                <FormLabel>Slug</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Digite o slug da categoria..."
-                    {...field}
-                    autoComplete="off"
-                  />
-                </FormControl>
-                <FormMessage className="text-xs text-red-500" />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
             name="imageUrl"
             render={({ field }) => (
               <FormItem className="w-full">
@@ -128,6 +102,13 @@ const NewCategoryForm = () => {
               </FormItem>
             )}
           />
+
+          {/* <div className="grid w-full max-w-sm items-center gap-1.5">
+            <Label htmlFor="picture">Picture</Label>
+            <Input id="picture" type="file" />
+          </div> */}
+
+
           <Button
             variant={"default"}
             type="submit"

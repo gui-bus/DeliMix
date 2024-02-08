@@ -9,23 +9,30 @@ const Search = () => {
   const router = useRouter();
 
   return (
-    <section className="flex h-full w-full items-center justify-center">
-      <div className="flex w-full items-center justify-center gap-5">
-        <div className="hidden h-full lg:flex lg:w-1/2">
+    <section className="flex w-full items-center justify-center">
+      <div className="flex w-full flex-col items-center justify-center gap-5">
+        <div className="relative">
           <Image
             src="/01.png"
-            alt="DeliMix"
-            height={0}
+            alt="DeliMix Banner - Cadastro de categorias"
             width={0}
+            height={0}
+            className="h-auto w-full object-cover"
             sizes="100vw"
             priority
-            className="h-full w-full rounded-r-2xl object-contain"
+            draggable="false"
           />
-        </div>
-        <div className="w-full p-5 lg:w-1/2">
-          <Button size={"sm"} variant={"outline"} onClick={() => router.back()} className="mb-5 w-fit">
-            <ChevronLeftIcon size={20} className="mr-2"/> Voltar
+          <Button
+            size={"sm"}
+            variant={"outline"}
+            onClick={() => router.back()}
+            className="absolute left-4 top-4 w-fit"
+          >
+            <ChevronLeftIcon size={20} className="mr-2" /> Voltar
           </Button>
+        </div>
+
+        <div className="w-full p-5">
           <div className="mx-auto mb-5 flex w-full flex-col justify-center space-y-2">
             <h1 className="flex justify-center text-2xl font-bold">
               Adicionar Categoria
