@@ -26,7 +26,7 @@ const ProductsSection = async () => {
               className="md:basis-1/3 lg:basis-1/4"
               key={product.id}
             >
-              <ProductItem product={product} />
+              <ProductItem product={product} isAdminPage={false}/>
             </CarouselItem>
           ))}
         </CarouselContent>

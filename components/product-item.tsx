@@ -4,7 +4,6 @@ import { Card, CardContent } from "../components/ui/card";
 
 import { Product } from "@prisma/client";
 import Image from "next/image";
-import { useTheme } from "next-themes";
 
 import {
   Dialog,
@@ -16,9 +15,33 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Separator } from "./ui/separator";
+import { deleteProduct } from "@/actions/delete-product";
+import { useState } from "react";
+import toast from "react-hot-toast";
+import { ClipLoader } from "react-spinners";
+import { TbTrash } from "react-icons/tb";
 
-const ProductItem = ({ product }: { product: Product }) => {
-  const { setTheme, theme } = useTheme();
+interface ProductItemProps {
+  product: Product;
+  isAdminPage: boolean;
+}
+
+const ProductItem = ({ isAdminPage, product }: ProductItemProps) => {
+  const [dialogIsOpen, setDialogIsOpen] = useState(false);
+  const [cancelIsLoading, setCancelIsLoading] = useState(false);
+
+  const handleDeleteClick = async () => {
+    try {
+      setCancelIsLoading(true);
+      await deleteProduct(product.id);
+      setDialogIsOpen(false);
+      toast.success("Produto removido com sucesso!");
+    } catch (error) {
+      return toast.error("Ocorreu um erro!");
+    } finally {
+      setCancelIsLoading(false);
+    }
+  };
 
   return (
     <>
@@ -37,7 +60,7 @@ const ProductItem = ({ product }: { product: Product }) => {
 
           <div className="flex flex-col items-center justify-center px-5 text-black">
             <h2 className="font-medium lg:text-xl">{product.name}</h2>
-            <p className="font-light my-3">
+            <p className="my-3 font-light">
               {Number(product.basePrice).toLocaleString("pt-BR", {
                 style: "currency",
                 currency: "BRL",
@@ -49,7 +72,7 @@ const ProductItem = ({ product }: { product: Product }) => {
           </div>
 
           <div className="px-5">
-            <Dialog>
+            <Dialog open={dialogIsOpen} onOpenChange={setDialogIsOpen}>
               <DialogTrigger asChild>
                 <Button variant="default" className="w-full">
                   Ver detalhes
@@ -72,6 +95,24 @@ const ProductItem = ({ product }: { product: Product }) => {
                     <p className="mt-5 text-base font-light text-black dark:text-white">
                       {product.description}
                     </p>
+
+                    {isAdminPage && (
+                      <Button
+                        onClick={handleDeleteClick}
+                        disabled={cancelIsLoading}
+                        className="mt-5 w-full"
+                      >
+                        {cancelIsLoading ? (
+                          <span className="flex items-center gap-4">
+                            <ClipLoader color="#fff" size={20} /> Removendo...
+                          </span>
+                        ) : (
+                          <span className="flex items-center gap-2">
+                            Remover produto do cardápio <TbTrash size={25}/>
+                          </span>
+                        )}
+                      </Button>
+                    )}
                   </DialogDescription>
                 </DialogHeader>
                 <DialogFooter></DialogFooter>

@@ -7,7 +7,7 @@ const Admin = () => {
       <div className="p-5">
         <h1>Admin page</h1>
 
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-5 flex-wrap">
           <Button
             variant={"default"}
             size={"lg"}
@@ -33,6 +33,20 @@ const Admin = () => {
               className="flex w-full items-center justify-center gap-2"
             >
               Novo produto
+            </Link>
+          </Button>
+
+          <Button
+            variant={"default"}
+            size={"lg"}
+            className="hidden rounded-3xl md:flex"
+            asChild
+          >
+            <Link
+              href="/admin/list/products"
+              className="flex w-full items-center justify-center gap-2"
+            >
+              Lista de produtos
             </Link>
           </Button>
         </div>
