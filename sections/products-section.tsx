@@ -12,7 +12,7 @@ const ProductsSection = async () => {
   const products = await prismaClient.product.findMany({
     where: {
       category: {
-        name: 'Bebidas'
+        name: "Bebidas",
       },
     },
   });
@@ -30,8 +30,10 @@ const ProductsSection = async () => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselNext />
-        <CarouselPrevious />
+        <div className="hidden lg:block">
+          <CarouselNext />
+          <CarouselPrevious />
+        </div>
       </Carousel>
     </div>
   );

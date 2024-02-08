@@ -70,8 +70,10 @@ const AboutSection = () => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselNext />
-        <CarouselPrevious />
+        <div className="hidden lg:block">
+          <CarouselNext />
+          <CarouselPrevious />
+        </div>
       </Carousel>
     </section>
   );
