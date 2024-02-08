@@ -32,7 +32,7 @@ const Search = () => {
           </Button>
         </div>
 
-        <div className="w-full p-5">
+        <div className="w-full max-w-7xl mx-auto p-5">
           <div className="mx-auto mb-5 flex w-full flex-col justify-center space-y-2">
             <h1 className="flex justify-center text-2xl font-bold">
               Adicionar Categoria
