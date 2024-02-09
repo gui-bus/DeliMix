@@ -6,6 +6,9 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { Button } from "@/components/ui/button";
+import { MdMenuBook } from "react-icons/md";
+import { Separator } from "@/components/ui/separator";
 
 const products = [
   {
@@ -42,7 +45,7 @@ const products = [
 
 const AboutSection = () => {
   return (
-    <section className="flex flex-col items-center justify-center gap-5">
+    <section className="flex flex-col items-center justify-center gap-5 px-5">
       <div className="flex flex-col items-center justify-center gap-2 p-5">
         <h1 className="text-center text-xl font-black uppercase italic md:text-3xl">
           Explore uma explosão de sabores em cada mordida
@@ -52,7 +55,7 @@ const AboutSection = () => {
         </p>
       </div>
 
-      <Carousel className="mx-auto w-full max-w-7xl px-5">
+      <Carousel className="mx-auto w-full max-w-7xl">
         <CarouselContent>
           {products.map((product) => (
             <CarouselItem
@@ -64,7 +67,7 @@ const AboutSection = () => {
                 alt="DeliMix"
                 width={0}
                 height={0}
-                className="mb-5 h-60 w-full select-none rounded-2xl object-cover"
+                className="h-60 w-full select-none rounded-2xl object-cover"
                 sizes="100vw"
               />
             </CarouselItem>
@@ -75,6 +78,41 @@ const AboutSection = () => {
           <CarouselPrevious />
         </div>
       </Carousel>
+
+      <Separator className="my-5"/>
+
+      <div className="flex flex-col-reverse items-center justify-between md:flex-row gap-5">
+        <Image
+          src="/About.png"
+          alt="Sobre a DeliMix"
+          width={0}
+          height={0}
+          className="h-auto w-full object-cover"
+          sizes="100vw"
+          priority
+          draggable="false"
+        />
+
+        <div className="flex flex-col items-center justify-center text-center md:items-start md:justify-start md:text-left">
+          <span className="font-light text-primary">SOBRE</span>
+          <h2 className="text-2xl font-bold">O Que é a DeliMix?</h2>
+
+          <div className="mt-5 flex flex-col gap-3">
+            <p className="font-light text-white/70">
+              Bem-vindo à DeliMix, onde a gastronomia é a nossa paixão. Somos
+              uma lanchonete gourmet delivery comprometida em criar experiências
+              culinárias excepcionais e sem igual. Com nossos lanches saborosos,
+              pizzas artesanais, culinária japonesa autêntica, drinks
+              refrescantes e muitos outros pratos, oferecemos uma jornada
+              culinária incrível.
+            </p>
+
+            <p className="font-bold text-xl">
+              Venha desfrutar de uma jornada inesquecível na DeliMix!
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };

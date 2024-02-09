@@ -17,13 +17,10 @@ export default function Home() {
         draggable="false"
       />
       <div className="mx-auto flex w-full max-w-6xl flex-col">
-        <div className="md:hidden">
           <WelcomeSection />
-        </div>
+   
         <AboutSection />
-        <div className="hidden md:block">
-          <WelcomeSection />
-        </div>
+
 
         <ProductsSection />
       </div>
