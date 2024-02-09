@@ -184,7 +184,7 @@ const UpdateProductForm = ({ productId, product }: UpdateProductFormProps) => {
           />
         </div>
 
-        <div className="flex flex-col items-center gap-5 md:flex-row">
+        <div className="flex items-center gap-5">
           <FormField
             control={form.control}
             name="basePrice"
