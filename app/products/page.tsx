@@ -1,4 +1,5 @@
 import ProductItem from "@/components/product-item";
+import { computeProductTotalPrice } from "@/helpers/product";
 import { prismaClient } from "@/lib/prisma";
 import { Product } from "@prisma/client";
 import { redirect } from "next/navigation";
@@ -40,9 +41,13 @@ const BarbershopsPage = async ({ searchParams }: BarbershopsPageProps) => {
       </h1>
 
       {products.length > 0 ? (
-        <div className="mt-5 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
+        <div className="mt-5 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
           {products.map((product: Product) => (
-            <ProductItem key={product.id} product={product} />
+            <ProductItem
+              key={product.id}
+              product={computeProductTotalPrice(product)}
+              isAdminPage={false}
+            />
           ))}
         </div>
       ) : (
