@@ -61,7 +61,7 @@ const ProductItem = ({ isAdminPage, product }: ProductItemProps) => {
 
   return (
     <>
-      <Card className="w-full rounded-2xl border-none bg-white dark:bg-neutral-800">
+      <Card className="w-full rounded-2xl border-none bg-white dark:bg-neutral-800 select-none">
         <CardContent className="px-0">
           <div className="p-5">
             <div className="relative">
@@ -72,15 +72,21 @@ const ProductItem = ({ isAdminPage, product }: ProductItemProps) => {
                 height={0}
                 width={0}
                 className="h-56 w-full rounded-2xl object-cover"
+                draggable={false}
               />
-              
 
               {product.discountPercentage > 0 && (
                 <p className="absolute left-0 top-0 rounded-br-2xl rounded-tl-2xl bg-primary px-4 py-1 text-xs font-light text-white">
-                  Promoção - {" "}
+                  Promoção -{" "}
                   <span className="font-bold">
                     {product.discountPercentage}% OFF
                   </span>
+                </p>
+              )}
+
+              {product.specialTag !== 'EMPTY' && (
+                <p className="absolute bottom-0 right-0 rounded-br-2xl rounded-tl-2xl px-4 py-1 text-xs font-medium bg-primary text-white text-center">
+                  {tagTranslation(product.specialTag as Tags)}
                 </p>
               )}
             </div>
@@ -107,11 +113,9 @@ const ProductItem = ({ isAdminPage, product }: ProductItemProps) => {
                 </p>
               )}
             </div>
-            <p className="mb-5 text-center text-sm font-light text-muted-foreground dark:text-white/70 w-full max-w-[99%] line-clamp-4">
+            <p className="mb-5 line-clamp-4 w-full max-w-[99%] text-center text-sm font-light text-muted-foreground dark:text-white/70">
               {product.description}
             </p>
-            
-            <p>{tagTranslation(product.specialTag as Tags)}</p>
           </div>
 
           <div className="px-5">
