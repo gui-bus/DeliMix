@@ -1,12 +1,15 @@
-"use client";
 import NewCategoryForm from "@/components/admin/new-category-form";
-import { Button } from "@/components/ui/button";
-import { ChevronLeftIcon } from "lucide-react";
+import BackButton from "@/components/common/back-button";
+import { auth } from "@clerk/nextjs";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 
 const Search = () => {
-  const router = useRouter();
+  const { sessionClaims } = auth();
+
+  if (sessionClaims?.metadata.role !== "admin") {
+    redirect("/");
+  }
 
   return (
     <section className="flex w-full items-center justify-center">
@@ -22,17 +25,10 @@ const Search = () => {
             priority
             draggable="false"
           />
-          <Button
-            size={"sm"}
-            variant={"outline"}
-            onClick={() => router.back()}
-            className="absolute left-4 top-4 w-fit"
-          >
-            <ChevronLeftIcon size={20} className="mr-2" /> Voltar
-          </Button>
+          <BackButton />
         </div>
 
-        <div className="w-full max-w-7xl mx-auto p-5">
+        <div className="mx-auto w-full max-w-7xl p-5">
           <div className="mx-auto mb-5 flex w-full flex-col justify-center space-y-2">
             <h1 className="flex justify-center text-2xl font-bold">
               Adicionar Categoria
