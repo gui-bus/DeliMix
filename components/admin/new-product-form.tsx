@@ -21,6 +21,7 @@ import { Category } from "@prisma/client";
 import { createProduct } from "@/actions/new-product";
 import toast from "react-hot-toast";
 import Image from "next/image";
+import { Tags, tagTranslation } from "@/helpers/tag-translation";
 
 const newProductSchema = z.object({
   name: z
@@ -64,12 +65,16 @@ const newProductSchema = z.object({
     .string({ required_error: "Campo obrigatório!" })
     .trim()
     .min(1, "Campo obrigatório!"),
+  specialTag: z
+    .string({ required_error: "Campo obrigatório!" })
+    .refine((val) => Object.values(Tags).includes(val as Tags)),
 });
 
 const NewProductForm = () => {
   const [categorySelected, setCategorySelected] = useState<number | string>("");
   const [categoriesList, setCategoriesList] = useState<Category[]>([]);
   const [imageUrlPreview, setImageUrlPreview] = useState("");
+  const [tagSelected, setTagSelected] = useState<string>("");
 
   useEffect(() => {
     const fetchCategorias = async () => {
@@ -100,6 +105,7 @@ const NewProductForm = () => {
         discountPercentage: parseFloat(
           data.discountPercentage.replace(",", "."),
         ),
+        specialTag: data.specialTag as Tags,
       };
 
       await createProduct({ data: productData });
@@ -110,6 +116,8 @@ const NewProductForm = () => {
       form.setValue("basePrice", "");
       form.setValue("discountPercentage", "");
       form.setValue("description", "");
+      form.setValue("specialTag", "");
+      setImageUrlPreview("");
 
       toast.success("Produto criado com sucesso!", {
         style: {
@@ -145,6 +153,10 @@ const NewProductForm = () => {
       setImageUrlPreview("");
     }
   };
+
+  function handleChangeTag(value: string) {
+    setTagSelected(value);
+  }
 
   return (
     <div className="flex flex-col items-center justify-center gap-5 md:flex-row">
@@ -248,6 +260,48 @@ const NewProductForm = () => {
                       UploadThing
                     </Link>
                     .
+                  </FormDescription>
+                  <FormMessage className="text-xs text-red-500" />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="specialTag"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <FormLabel>Classificação</FormLabel>
+
+                  <FormControl>
+                    <select
+                      className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1"
+                      {...field}
+                      onChange={(e) => {
+                        handleChangeTag(e.target.value);
+                        field.onChange(e);
+                      }}
+                    >
+                      <option
+                        value="default"
+                        className="hidden text-muted-foreground"
+                      >
+                        Selecione a classificação do produto...
+                      </option>
+                      {Object.values(Tags).map((tag) => (
+                        <option
+                          className="text-black dark:text-white"
+                          key={tag}
+                          value={tag}
+                        >
+                          {tagTranslation(tag)}
+                        </option>
+                      ))}
+                    </select>
+                  </FormControl>
+                  <FormDescription className="text-xs">
+                    Selecione a opção &apos;Vazio&apos; caso não queira nenhuma
+                    classificação adicional.{" "}
                   </FormDescription>
                   <FormMessage className="text-xs text-red-500" />
                 </FormItem>

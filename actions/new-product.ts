@@ -1,27 +1,23 @@
 "use server";
 
 import { prismaClient } from "@/lib/prisma";
+import { Tags } from "@prisma/client";
 import { v4 as uuidv4 } from "uuid";
 
 interface createCategoryProps {
   data: {
     imageUrl: string;
     name: string;
-    // slug: string;
     basePrice: number;
     description: string;
     discountPercentage: number;
     category: string;
+    specialTag: Tags;
   };
 }
 
 export const createProduct = async ({ data }: createCategoryProps) => {
-  //   if (!data.imageUrl || !data.name || !data.slug) {
-  //     return null;
-  //   }
-
-  var slugify = require('slugify')
-
+  var slugify = require("slugify");
 
   await prismaClient.product.create({
     data: {
@@ -33,6 +29,7 @@ export const createProduct = async ({ data }: createCategoryProps) => {
       description: data.description,
       discountPercentage: data.discountPercentage,
       categoryId: data.category,
+      specialTag: data.specialTag,
     },
   });
 };

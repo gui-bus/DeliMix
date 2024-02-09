@@ -59,8 +59,6 @@ const ProductItem = ({ isAdminPage, product }: ProductItemProps) => {
     }
   };
 
-  // TODO: ADICIONAR ESSA COISA TAMBÉM NA PARTE DE ATUALIZAR INFORMAÇOES DO PRODUTO, PARA PODER MUDAR OU REMOVER A TAG
-
   return (
     <>
       <Card className="w-full rounded-2xl border-none bg-white dark:bg-neutral-800">
@@ -109,7 +107,7 @@ const ProductItem = ({ isAdminPage, product }: ProductItemProps) => {
                 </p>
               )}
             </div>
-            <p className="mb-5 text-center text-sm font-light text-muted-foreground dark:text-white/70">
+            <p className="mb-5 text-center text-sm font-light text-muted-foreground dark:text-white/70 w-full max-w-[99%] line-clamp-4">
               {product.description}
             </p>
             
