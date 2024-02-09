@@ -10,6 +10,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Tags {
+  EMPTY
+  MAIS_VENDIDO
+  PICANTE
+  LIMITADO
+  VEGANO
+  SEM_GLUTEN
+  ORGANICO
+  SAUDAVEL
+  FIT
+  ARTESANAL
+  GOURMET
+  VEGETARIANO
+}
+
 model Category {
   id       String    @id @default(uuid())
   name     String
@@ -25,6 +40,7 @@ model Product {
   description        String
   basePrice          Decimal        @db.Decimal(8, 2)
   imageUrl           String
+  specialTag         Tags           @default(EMPTY)
   category           Category       @relation(fields: [categoryId], references: [id])
   categoryId         String
   discountPercentage Int            @default(0)
