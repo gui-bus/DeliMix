@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -16,6 +17,8 @@ import { FiRefreshCw } from "react-icons/fi";
 import toast from "react-hot-toast";
 import { updateProduct } from "@/actions/update-product";
 import { Product } from "@prisma/client";
+import { useState } from "react";
+import { Tags, tagTranslation } from "@/helpers/tag-translation";
 
 const newProductSchema = z.object({
   name: z
@@ -40,6 +43,9 @@ const newProductSchema = z.object({
     .string({ required_error: "Campo obrigatório!" })
     .trim()
     .min(1, "Campo obrigatório!"),
+  specialTag: z
+    .string()
+    .refine((val) => Object.values(Tags).includes(val as Tags)),
 });
 
 interface UpdateProductFormProps {
@@ -48,6 +54,8 @@ interface UpdateProductFormProps {
 }
 
 const UpdateProductForm = ({ productId, product }: UpdateProductFormProps) => {
+  const [tagSelected, setTagSelected] = useState<string>("");
+
   const form = useForm<z.infer<typeof newProductSchema>>({
     resolver: zodResolver(newProductSchema),
     defaultValues: {
@@ -55,6 +63,7 @@ const UpdateProductForm = ({ productId, product }: UpdateProductFormProps) => {
       description: product.description,
       basePrice: String(product.basePrice),
       discountPercentage: String(product.discountPercentage),
+      specialTag: product.specialTag,
     },
   });
 
@@ -66,10 +75,10 @@ const UpdateProductForm = ({ productId, product }: UpdateProductFormProps) => {
         discountPercentage: parseFloat(
           data.discountPercentage.replace(",", "."),
         ),
+        specialTag: data.specialTag as Tags,
       };
 
       await updateProduct({ data: productData, productId });
-
 
       toast.success("Produto atualizado com sucesso!", {
         style: {
@@ -84,6 +93,10 @@ const UpdateProductForm = ({ productId, product }: UpdateProductFormProps) => {
       });
     }
   };
+
+  function handleChangeTag(value: string) {
+    setTagSelected(value);
+  }
 
   return (
     <Form {...form}>
@@ -105,6 +118,48 @@ const UpdateProductForm = ({ productId, product }: UpdateProductFormProps) => {
                     autoComplete="off"
                   />
                 </FormControl>
+                <FormMessage className="text-xs text-red-500" />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="specialTag"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormLabel>Classificação</FormLabel>
+
+                <FormControl>
+                  <select
+                    className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1"
+                    {...field}
+                    onChange={(e) => {
+                      handleChangeTag(e.target.value);
+                      field.onChange(e);
+                    }}
+                  >
+                    <option
+                      value="default"
+                      className="hidden text-muted-foreground"
+                    >
+                      Selecione a tag do produto...
+                    </option>
+                    {Object.values(Tags).map((tag) => (
+                      <option
+                        className="text-black dark:text-white"
+                        key={tag}
+                        value={tag}
+                      >
+                        {tagTranslation(tag)}
+                      </option>
+                    ))}
+                  </select>
+                </FormControl>
+                <FormDescription className="text-xs">
+                  Selecione a opção &apos;Vazio&apos; caso não queira nenhuma
+                  classificação adicional.{" "}
+                </FormDescription>
                 <FormMessage className="text-xs text-red-500" />
               </FormItem>
             )}

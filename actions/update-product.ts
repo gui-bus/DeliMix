@@ -1,6 +1,7 @@
 "use server";
 
 import { prismaClient } from "@/lib/prisma";
+import { Tags } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 
 interface UpdateProductProps {
@@ -10,6 +11,7 @@ interface UpdateProductProps {
     basePrice: number;
     discountPercentage: number;
     description: string;
+    specialTag: Tags;
   };
 }
 
@@ -34,6 +36,7 @@ export const updateProduct = async ({ data, productId }: UpdateProductProps) => 
         description: data.description,
         basePrice: data.basePrice,
         discountPercentage: data.discountPercentage,
+        specialTag: data.specialTag,
       },
     });
 
