@@ -34,7 +34,6 @@ import { ClipLoader } from "react-spinners";
 import { TbTrash } from "react-icons/tb";
 import UpdateProductForm from "./admin/update-product-form";
 import { ProductWithTotalPrice } from "@/helpers/product";
-import { MdOutlineDiscount } from "react-icons/md";
 import { Tags, tagTranslation } from "@/helpers/tag-translation";
 
 interface ProductItemProps {
@@ -61,7 +60,7 @@ const ProductItem = ({ isAdminPage, product }: ProductItemProps) => {
 
   return (
     <>
-      <Card className="w-full rounded-2xl border-none bg-white dark:bg-neutral-800 select-none">
+      <Card className="w-full select-none rounded-2xl border-none bg-white dark:bg-neutral-800">
         <CardContent className="px-0">
           <div className="p-5">
             <div className="relative">
@@ -84,8 +83,8 @@ const ProductItem = ({ isAdminPage, product }: ProductItemProps) => {
                 </p>
               )}
 
-              {product.specialTag !== 'EMPTY' && (
-                <p className="absolute bottom-0 right-0 rounded-br-2xl rounded-tl-2xl px-4 py-1 text-xs font-medium bg-primary text-white text-center">
+              {product.specialTag !== "EMPTY" && (
+                <p className="absolute bottom-0 right-0 rounded-br-2xl rounded-tl-2xl bg-primary px-4 py-1 text-center text-xs font-medium text-white">
                   {tagTranslation(product.specialTag as Tags)}
                 </p>
               )}
@@ -96,7 +95,7 @@ const ProductItem = ({ isAdminPage, product }: ProductItemProps) => {
             <h2 className="font-medium lg:text-xl">{product.name}</h2>
             <div className="flex items-center gap-2">
               <p
-                className={`my-3 font-light ${product.discountPercentage > 0 && "line-through"}`}
+                className={`my-3 ${product.discountPercentage > 0 ? "line-through font-light" : 'font-bold'}`}
               >
                 {Number(product.basePrice).toLocaleString("pt-BR", {
                   style: "currency",
@@ -105,7 +104,9 @@ const ProductItem = ({ isAdminPage, product }: ProductItemProps) => {
               </p>
 
               {product.discountPercentage > 0 && (
-                <p className="my-3 font-light">
+                <p
+                  className={`my-3 ${product.discountPercentage > 0 && "font-bold"}`}
+                >
                   {Number(product.totalPrice).toLocaleString("pt-BR", {
                     style: "currency",
                     currency: "BRL",
@@ -113,7 +114,7 @@ const ProductItem = ({ isAdminPage, product }: ProductItemProps) => {
                 </p>
               )}
             </div>
-            <p className="mb-5 line-clamp-4 w-full max-w-[99%] text-center text-sm font-light text-muted-foreground dark:text-white/70">
+            <p className="mb-5 line-clamp-2 w-full max-w-[99%] text-center text-sm font-light text-muted-foreground dark:text-white/70">
               {product.description}
             </p>
           </div>
@@ -130,16 +131,57 @@ const ProductItem = ({ isAdminPage, product }: ProductItemProps) => {
                   <DialogTitle className="text-xl">{product.name}</DialogTitle>
                   <DialogDescription>
                     <Separator className="mb-5 mt-3" />
-                    <Image
-                      src={product.imageUrl}
-                      alt={product.name}
-                      sizes="100vw"
-                      height={0}
-                      width={0}
-                      className="h-full max-h-56 w-full rounded-2xl object-cover"
-                    />
 
-                    <p className="mt-5 text-base font-light text-black dark:text-white">
+                    <div className="relative">
+                      <Image
+                        src={product.imageUrl}
+                        alt={product.name}
+                        sizes="100vw"
+                        height={0}
+                        width={0}
+                        className="h-56 w-full rounded-2xl object-cover"
+                        draggable={false}
+                      />
+
+                      {product.discountPercentage > 0 && (
+                        <p className="absolute left-0 top-0 rounded-br-2xl rounded-tl-2xl bg-primary px-4 py-1 text-xs font-light text-white">
+                          Promoção -{" "}
+                          <span className="font-bold">
+                            {product.discountPercentage}% OFF
+                          </span>
+                        </p>
+                      )}
+
+                      {product.specialTag !== "EMPTY" && (
+                        <p className="absolute bottom-0 right-0 rounded-br-2xl rounded-tl-2xl bg-primary px-4 py-1 text-center text-xs font-medium text-white">
+                          {tagTranslation(product.specialTag as Tags)}
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="flex items-center justify-center gap-2 text-lg text-black dark:text-white">
+                      <p
+                        className={`my-3 font-light ${product.discountPercentage > 0 && "line-through"}`}
+                      >
+                        {Number(product.basePrice).toLocaleString("pt-BR", {
+                          style: "currency",
+                          currency: "BRL",
+                        })}
+                      </p>
+
+                      {product.discountPercentage > 0 && (
+                        <p
+                          className={`my-3 ${product.discountPercentage > 0 && "font-bold"}`}
+                        >
+                          {Number(product.totalPrice).toLocaleString("pt-BR", {
+                            style: "currency",
+                            currency: "BRL",
+                          })}
+                        </p>
+                      )}
+                    </div>
+
+                    <p className="text-base font-light text-black dark:text-white">
                       {product.description}
                     </p>
 
