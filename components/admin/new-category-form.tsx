@@ -61,6 +61,7 @@ const NewCategoryForm = () => {
 
       form.setValue("name", "");
       form.setValue("imageUrl", "");
+      setImageUrlPreview("");
 
       toast.success("Categoria criada com sucesso!", {
         style: {
