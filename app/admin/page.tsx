@@ -1,13 +1,21 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { auth } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
 
 const Admin = () => {
+  const { sessionClaims } = auth();
+
+  if (sessionClaims?.metadata.role !== "admin") {
+    redirect("/");
+  }
+
   return (
     <section className="mx-auto flex w-full max-w-7xl flex-col">
       <div className="p-5">
         <h1>Admin page</h1>
 
-        <div className="flex items-center gap-5 flex-wrap">
+        <div className="flex flex-wrap items-center gap-5">
           <Button
             variant={"default"}
             size={"lg"}
