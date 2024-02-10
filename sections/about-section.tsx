@@ -79,9 +79,9 @@ const AboutSection = () => {
         </div>
       </Carousel>
 
-      <Separator className="my-5"/>
+      <Separator className="my-5" />
 
-      <div className="flex flex-col-reverse items-center justify-between md:flex-row gap-5">
+      <div className="flex flex-col-reverse items-center justify-between gap-5 md:flex-row">
         <Image
           src="/About.png"
           alt="Sobre a DeliMix"
@@ -98,23 +98,27 @@ const AboutSection = () => {
           <h2 className="text-2xl font-bold">O Que é a DeliMix?</h2>
 
           <div className="mt-5 flex flex-col gap-3">
-            <p className="font-light dark:text-white/70">
-              Bem-vindo à DeliMix, onde a gastronomia é a nossa paixão. Somos
-              uma lanchonete gourmet delivery comprometida em criar experiências
-              culinárias excepcionais e sem igual. Com nossos lanches saborosos,
-              pizzas artesanais, culinária japonesa autêntica, drinks
-              refrescantes e muitos outros pratos, oferecemos uma jornada
-              culinária incrível.
+            <p className="text-sm font-light dark:text-white/70">
+              Bem-vindo à DeliMix, somos um estabelecimento dedicado a criar
+              experiências culinárias extraordinárias, aqui a arte
+              da gastronomia é a nossa maior paixão.
             </p>
 
-            <p className="font-bold text-xl">
-              Venha desfrutar de uma jornada inesquecível na DeliMix!
+            <p className="text-sm font-light dark:text-white/70">
+              Com pratos cuidadosamente elaborados, sabores sofisticados e um
+              serviço excepcional, oferecemos uma jornada gastronômica que
+              transcende o ordinário.
+            </p>
+
+            <p className="text-sm font-bold">
+            Descubra o requinte de cada sabor e
+              desfrute de uma experiência única em cada detalhe.
             </p>
           </div>
         </div>
       </div>
 
-      <Separator className="my-5"/>
+      <Separator className="my-5" />
     </section>
   );
 };
