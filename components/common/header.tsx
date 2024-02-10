@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <header>
       <Card className="rounded-none border-none drop-shadow-xl">
-        <CardContent className="mx-auto flex w-full max-w-5xl items-center justify-around p-3">
+        <CardContent className="mx-auto flex w-full max-w-6xl items-center justify-around p-3">
           <Link href="/">
             <Image
               src="/textLogo.svg"
@@ -22,7 +22,7 @@ const Header = () => {
             />
           </Link>
 
-          <div className="mx-auto hidden w-full max-w-xl md:block">
+          <div className="mx-auto hidden w-full max-w-lg md:block">
             <Search />
           </div>
 

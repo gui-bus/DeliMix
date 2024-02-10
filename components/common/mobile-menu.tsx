@@ -10,7 +10,6 @@ import {
 import { MenuIcon } from "lucide-react";
 import { Separator } from "../ui/separator";
 import { ImEnter } from "react-icons/im";
-import { HiMiniShoppingCart } from "react-icons/hi2";
 import { useState } from "react";
 import { Button } from "../ui/button";
 import ThemeSwitcher from "./theme-switcher";
@@ -18,10 +17,27 @@ import { navlinks } from "@/helpers/contants";
 import Link from "next/link";
 import { UserButton, useClerk } from "@clerk/nextjs";
 import { useUser } from "@clerk/nextjs";
+import { FaWhatsapp } from "react-icons/fa6";
+
+const tel = 12981847553;
+var text =
+  "*Seja muito bem-vindo ao WhatsApp da DeliMix! Estamos aqui para atendê-lo com todo o prazer.*\n";
+text +=
+  "Para realizar seu pedido, precisamos de algumas informações. Caso tenha alguma dúvida, fique à vontade para perguntar!\n\n";
+text += "*Seu nome:*\n";
+text += "*O que você gostaria de pedir hoje?*\n";
+text += "*Endereço de entrega e ponto de referência:*\n";
+text +=
+  "*Qual será a forma de pagamento. (Dinheiro, PIX, Crédito, Débito, VA/VR)*\n\n";
+
+text += "*Obrigado por escolher a Delimix!*";
+
+let encode = encodeURIComponent(text);
+let URL = `https://wa.me/${tel}?text=${encode}`;
 
 const MobileMenu = () => {
   const [sheetIsOpen, setSheetIsOpen] = useState(false);
-  const { isSignedIn, user } = useUser();
+  const { isSignedIn } = useUser();
   const { signOut } = useClerk();
 
   const sheetButtonClick = () => {
@@ -42,13 +58,23 @@ const MobileMenu = () => {
             <ThemeSwitcher size={"icon"} variant={"link"} />
           </div>
         </div>
+        {isSignedIn && (
+          <Button variant={"outline"} asChild className="rounded-xl">
+            <Link
+              href={URL}
+              target="_blank"
+              className="flex items-center gap-2"
+            >
+              Faça seu pedido <FaWhatsapp size={20} />
+            </Link>
+          </Button>
+        )}
 
-        
-          {!isSignedIn && (
+        {!isSignedIn && (
+          <div className="flex items-center gap-2">
             <Button
-              variant={"default"}
-              size={"lg"}
-              className="hidden rounded-3xl md:flex"
+              variant={"outline"}
+              className="hidden rounded-xl md:flex"
               asChild
             >
               <Link
@@ -58,8 +84,17 @@ const MobileMenu = () => {
                 Login <ImEnter size={20} />
               </Link>
             </Button>
-          )}
-        
+            <Button variant={"outline"} asChild className="rounded-xl">
+              <Link
+                href={URL}
+                target="_blank"
+                className="flex items-center gap-2"
+              >
+                Faça seu pedido <FaWhatsapp size={20} />
+              </Link>
+            </Button>
+          </div>
+        )}
       </div>
 
       <div className="md:hidden">
