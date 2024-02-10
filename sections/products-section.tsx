@@ -9,17 +9,21 @@ import {
 import { computeProductTotalPrice } from "@/helpers/product";
 import { prismaClient } from "@/lib/prisma";
 
-const ProductsSection = async () => {
+interface ProductsSectionProps {
+  categoryName: string;
+}
+
+const ProductsSection = async ({categoryName}: ProductsSectionProps) => {
   const products = await prismaClient.product.findMany({
     where: {
       category: {
-        name: "Bebidas",
+        name: categoryName,
       },
     },
   });
 
   return (
-    <div className="py-10">
+    <div className="py-5">
       <Carousel className="mx-auto w-full max-w-7xl px-5">
         <CarouselContent>
           {products.map((product) => (
