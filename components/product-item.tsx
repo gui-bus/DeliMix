@@ -181,7 +181,7 @@ const ProductItem = ({ isAdminPage, product }: ProductItemProps) => {
                       )}
                     </div>
 
-                    <p className="text-base font-light text-black dark:text-white">
+                    <p className="text-base font-light text-black dark:text-white text-center">
                       {product.description}
                     </p>
 
