@@ -161,7 +161,7 @@ const ProductItem = ({ isAdminPage, product }: ProductItemProps) => {
 
                     <div className="flex items-center justify-center gap-2 text-lg text-black dark:text-white">
                       <p
-                        className={`my-3 font-light ${product.discountPercentage > 0 && "line-through"}`}
+                        className={`my-3 ${product.discountPercentage > 0 ? "line-through font-light" : 'font-bold'}`}
                       >
                         {Number(product.basePrice).toLocaleString("pt-BR", {
                           style: "currency",

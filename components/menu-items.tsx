@@ -7,9 +7,9 @@ const MenuItems = async () => {
 
   return (
     <div className="my-8 flex flex-col items-center justify-center gap-5">
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center px-5">
         <span className="font-light text-primary">CARDÁPIO</span>
-        <h2 className="text-2xl font-black italic uppercase">
+        <h2 className="text-2xl font-black italic uppercase text-center">
           Explore nossa seleção de sabores únicos
         </h2>
 
