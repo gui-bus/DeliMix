@@ -98,7 +98,7 @@ const AboutSection = () => {
           <h2 className="text-2xl font-bold">O Que é a DeliMix?</h2>
 
           <div className="mt-5 flex flex-col gap-3">
-            <p className="font-light text-white/70">
+            <p className="font-light dark:text-white/70">
               Bem-vindo à DeliMix, onde a gastronomia é a nossa paixão. Somos
               uma lanchonete gourmet delivery comprometida em criar experiências
               culinárias excepcionais e sem igual. Com nossos lanches saborosos,
@@ -113,6 +113,8 @@ const AboutSection = () => {
           </div>
         </div>
       </div>
+
+      <Separator className="my-5"/>
     </section>
   );
 };
