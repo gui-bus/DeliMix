@@ -8,7 +8,7 @@ import Search from "./search";
 const Header = () => {
   return (
     <header>
-      <Card className="rounded-none border-none drop-shadow-xl">
+      <Card className="rounded-none border-none drop-shadow-xl px-5">
         <CardContent className="mx-auto flex w-full max-w-6xl items-center justify-around p-3">
           <Link href="/">
             <Image

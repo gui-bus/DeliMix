@@ -62,7 +62,7 @@ const MobileMenu = () => {
           <Button
             variant={"outline"}
             asChild
-            className="hidden rounded-xl md:flex"
+            className="hidden rounded-xl lg:flex"
           >
             <Link
               href={URL}
