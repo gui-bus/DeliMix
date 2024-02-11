@@ -59,7 +59,11 @@ const MobileMenu = () => {
           </div>
         </div>
         {isSignedIn && (
-          <Button variant={"outline"} asChild className="rounded-xl">
+          <Button
+            variant={"outline"}
+            asChild
+            className="hidden rounded-xl md:flex"
+          >
             <Link
               href={URL}
               target="_blank"
@@ -138,7 +142,7 @@ const MobileMenu = () => {
                       <Button
                         variant={"default"}
                         size={"lg"}
-                        className="flex w-full items-center justify-center gap-2 rounded-3xl"
+                        className="flex w-full items-center justify-center gap-2 rounded-xl"
                         onClick={handleLogoutClick}
                       >
                         Logout <ImEnter size={20} />
@@ -146,6 +150,22 @@ const MobileMenu = () => {
 
                       <ThemeSwitcher size={"icon"} variant={"link"} />
                     </div>
+
+                    <Separator className="my-5" />
+
+                    <Button
+                      variant={"default"}
+                      asChild
+                      className="rounded-xl"
+                    >
+                      <Link
+                        href={URL}
+                        target="_blank"
+                        className="flex items-center gap-2 w-full"
+                      >
+                        Faça seu pedido <FaWhatsapp size={20} />
+                      </Link>
+                    </Button>
 
                     <Separator className="my-5" />
                   </>
@@ -156,7 +176,7 @@ const MobileMenu = () => {
                     <Button
                       key={navlink.text}
                       variant={"outline"}
-                      className="rounded-full"
+                      className="rounded-xl"
                       asChild
                       onClick={sheetButtonClick}
                     >
