@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Page() {
   return (
-    <div className="flex min-h-screen w-full flex-col items-center justify-center py-10">
+    <div className="flex min-h-screen w-full flex-col items-center justify-center pb-10 bg-[url('/loading.png')] bg-cover bg-center bg-no-repeat">
       <Link href="/">
         <Image
           src="/Logo.png"
