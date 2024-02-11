@@ -50,7 +50,7 @@ function FooterLink({ text }: FooterLinkProps) {
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
-  const departments = ["Pizzas", "Bebidas", "Sobremesas"];
+  const departments = ["Pizzas", "Lanches", "Porções"];
 
   const institucionals = [
     "Sobre a DeliMix",

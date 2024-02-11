@@ -37,7 +37,7 @@ const MenuItems = async () => {
           satisfazer todos os paladares
         </p>
 
-        <Button variant={"outline"} asChild className="rounded-xl mt-5 w-full max-w-md mx-auto">
+        <Button variant={"default"} asChild className="rounded-xl mt-5 w-full max-w-md mx-auto">
           <Link href={URL} target="_blank" className="flex items-center gap-2">
             Faça seu pedido <FaWhatsapp size={20} />
           </Link>
