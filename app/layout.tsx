@@ -12,7 +12,7 @@ const montserrat = Montserrat({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "DeliMix | Lanches, Pizzas e muito mais - Tudo em um só lugar!",
   description:
-    "Descubra a excelência da DeliMix, sua pizzaria gourmet favorita. Peça nossas deliciosas pizzas artesanais e experimente uma explosão de sabores únicos, preparados com ingredientes frescos e de alta qualidade. Desfrute de uma experiência gastronômica excepcional!",
+    "Descubra a excelência da DeliMix, sua lanchonete gourmet favorita. Peça nossos deliciosos pratos artesanais e experimente uma explosão de sabores únicos, preparados com ingredientes frescos e de alta qualidade. Desfrute de uma experiência gastronômica excepcional!",
   keywords: [
     "pizzaria gourmet",
     "pizza artesanal",
