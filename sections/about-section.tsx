@@ -6,8 +6,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Button } from "@/components/ui/button";
-import { MdMenuBook } from "react-icons/md";
 import { Separator } from "@/components/ui/separator";
 
 const products = [
@@ -87,7 +85,7 @@ const AboutSection = () => {
           alt="Sobre a DeliMix"
           width={0}
           height={0}
-          className="h-auto w-full object-cover"
+          className="h-auto w-full max-w-xl object-cover"
           sizes="100vw"
           priority
           draggable="false"

@@ -20,7 +20,7 @@ export default function Home() {
           alt="DeliMix Banner"
           width={0}
           height={0}
-          className="h-auto w-full object-cover"
+          className="mx-auto h-auto w-full object-cover 3xl:max-w-7xl 3xl:rounded-b-xl"
           sizes="100vw"
           priority
           draggable="false"
@@ -28,25 +28,25 @@ export default function Home() {
 
         <div className="absolute bottom-3 right-3 hidden md:block">
           <div className="flex flex-col items-center justify-center gap-2">
-            <Button size={"icon"} variant={'outline'} asChild>
+            <Button size={"icon"} variant={"outline"} asChild>
               <Link href={"#"}>
                 <FaInstagram size={20} />
               </Link>
             </Button>
 
-            <Button size={"icon"} variant={'outline'} asChild>
+            <Button size={"icon"} variant={"outline"} asChild>
               <Link href={"#"}>
                 <FaXTwitter size={20} />
               </Link>
             </Button>
 
-             <Button size={"icon"} variant={'outline'} asChild>
+            <Button size={"icon"} variant={"outline"} asChild>
               <Link href={"#"}>
                 <FaLinkedinIn size={20} />
               </Link>
             </Button>
 
-            <Button size={"icon"} variant={'outline'} asChild>
+            <Button size={"icon"} variant={"outline"} asChild>
               <Link href={"#"}>
                 <FaWhatsapp size={20} />
               </Link>

@@ -67,7 +67,7 @@ export default function Footer() {
   return (
     <div>
       <div className="hidden md:block">
-        <footer className="mx-auto w-full cursor-default items-center justify-center border-t border-neutral-900 bg-white pt-5 shadow-xl dark:border-primary dark:bg-[#181717] md:px-0">
+        <footer className=" cursor-default items-center justify-center border-t border-neutral-900 bg-white pt-5 shadow-xl dark:border-primary dark:bg-[#181717] md:px-0 w-full 3xl:max-w-7xl mx-auto">
           <section className="flex items-center justify-around gap-y-4 pb-5 shadow-xl">
             <Link href="/">
               <Image
