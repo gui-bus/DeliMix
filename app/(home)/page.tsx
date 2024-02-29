@@ -14,7 +14,7 @@ import {
 export default function Home() {
   return (
     <section>
-      <div className="relative">
+      <div className="relative w-full 3xl:max-w-7xl mx-auto">
         <Image
           src="/banner.png"
           alt="DeliMix Banner"
